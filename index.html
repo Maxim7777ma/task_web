@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lexotex.com — Головна</title>
+  <link rel="stylesheet" href="static/css/theme.css">
+  <link rel="icon" href="favicon/favicon.ico">
+  <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+</head>
+<body>
+  <!-- Drawer -->
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <h3>Категорії та фільтри</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Закрити">✕</button>
+    </div>
+    <div class="drawer-section">
+      <h4>Категорії</h4>
+      <div class="chip-list">
+        <a class="chip" href="?cat=popular">Популярні</a>
+        <a class="chip" href="?cat=new">Нові</a>
+        <a class="chip" href="?cat=forme">Для мене</a>
+        <a class="chip" href="?cat=hd">HD</a>
+        <a class="chip" href="?cat=amateur">Аматорське</a>
+        <a class="chip" href="?cat=pro">Профі</a>
+        <a class="chip" href="?cat=romance">Романтика</a>
+        <a class="chip" href="?cat=exotic">Екзотика</a>
+        <a class="chip" href="?cat=trending">Тренди</a>
+        <a class="chip" href="?cat=shorts">Shorts</a>
+      </div>
+    </div>
+    <div class="drawer-section">
+      <h4>Тривалість</h4>
+      <div class="chip-list">
+        <button class="chip">≤ 5 хв</button>
+        <button class="chip">5–15 хв</button>
+        <button class="chip">15–30 хв</button>
+        <button class="chip">30+ хв</button>
+      </div>
+    </div>
+    <div class="drawer-section">
+      <h4>Якість</h4>
+      <div class="chip-list">
+        <button class="chip">SD</button>
+        <button class="chip">HD</button>
+        <button class="chip">FullHD</button>
+        <button class="chip">4K</button>
+      </div>
+    </div>
+    <div class="drawer-footer">
+      <button class="btn" id="applyFilters">Застосувати</button>
+      <button class="btn outline" id="resetFilters">Скинути</button>
+    </div>
+  </aside>
+  <div class="backdrop" id="backdrop"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">lexotex.com</a>
+      <div class="search-wrap">
+        <input type="search" id="searchInput" class="search-input" placeholder="Пошук...." aria-label="Пошук">
+        <button class="search-btn" id="searchBtn" aria-label="Пошук" title="Пошук">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+      <nav class="top-links">
+        <a class="top-link" href="?cat=popular">Популярні відео</a>
+        <a class="top-link" href="?cat=new">Нові відео</a>
+        <a class="top-link top-link--active" href="?cat=forme">Для мене</a>
+      </nav>
+      <button class="avatar" aria-label="Профіль"></button>
+      <button class="burger" id="burgerBtn" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+    <div class="frost"></div>
+  </header>
+
+  <!-- Content -->
+  <main class="page">
+    <section class="grid" id="videoGrid" aria-live="polite">
+      <h2 id="videoGridTitle" class="visually-hidden">Каталог відео</h2>
+    </section>
+    
+    <nav class="pagination" id="pagination" aria-label="Навігація сторінками"></nav>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h5>Категорії</h5>
+        <ul>
+          <li><a href="?cat=popular">Популярні</a></li>
+          <li><a href="?cat=new">Нові</a></li>
+          <li><a href="?cat=forme">Для мене</a></li>
+          <li><a href="?cat=hd">HD</a></li>
+          <li><a href="?cat=shorts">Shorts</a></li>
+          <li><a href="?cat=trending">Тренди</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Теги</h5>
+        <ul>
+          <li><a href="?cat=romance">Романтика</a></li>
+          <li><a href="?cat=exotic">Екзотика</a></li>
+          <li><a href="?cat=amateur">Аматорське</a></li>
+          <li><a href="?cat=pro">Профі</a></li>
+          <li><a href="?cat=hd">4K/FullHD</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Компанія</h5>
+        <ul>
+          <li><a href="terms.html">Правила користування</a></li>
+          <li><a href="dmca.html">DMCA</a></li>
+          <li><a href="feedback.html">Зворотний зв’язок</a></li>
+          <li><a href="#">Про нас</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Додатково</h5>
+        <ul>
+          <li><a href="#">Партнерам</a></li>
+          <li><a href="#">Реклама</a></li>
+          <li><a href="#">Підтримка</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 lexotex.com. Всі права захищені.</div>
+  </footer>
+
+  <script src="static/js/app.js" defer></script>
+</body>
+</html>

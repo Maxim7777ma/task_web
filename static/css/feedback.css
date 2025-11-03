@@ -1,0 +1,114 @@
+/* ========= FEEDBACK: глянець + іконки в інпутах ========= */
+:root{
+  --accent:#fff0de; /* теплий акцент */
+  --glow: rgba(255, 243, 229, 0.35);
+}
+
+.sub-content{
+  padding-bottom: 96px;
+}
+
+/* картка форми — скло */
+.contact-card{
+  border:1px solid rgba(255,255,255,.22);
+  background:linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius:20px;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.15) inset,
+    0 18px 40px rgba(0,0,0,.22),
+    0 0 0 0 var(--glow);
+  transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
+}
+.contact-card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.32);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.727) inset,
+    0 24px 60px rgba(237, 190, 190, 0.25),
+    0 0 22px 2px var(--glow);
+}
+
+/* поля з іконками (через background) */
+.field{
+  position: relative;
+}
+.field label{
+  display:block; margin: 0 0 6px 2px; opacity:.9; color:#fff;
+}
+.field input,
+.field textarea{
+  width:100%;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.24);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  color:#fff;
+  padding:14px 14px 14px 48px;  /* місце під іконку */
+  outline:none;
+  transition:border-color .2s ease, box-shadow .2s ease;
+  box-shadow: 0 2px 14px rgba(0,0,0,.18) inset;
+}
+.field input::placeholder,
+.field textarea::placeholder{ color: rgba(255,255,255,.55); }
+
+.field input:focus,
+.field textarea:focus{
+  border-color: rgba(255,255,255,.38);
+  box-shadow: 0 0 0 3px rgba(255,138,0,.18);
+}
+
+/* іконка зліва */
+.field::before{
+  content:"";
+  position:absolute; left:14px; top: 38px;
+  width:20px; height:20px; background:#fff; opacity:.9;
+}
+
+/* різні іконки на основі id поля */
+.field:has(#name)::before{
+  top: 38px;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.4 0-8 2.2-8 5v3h16v-3c0-2.8-3.6-5-8-5z'/></svg>") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.4 0-8 2.2-8 5v3h16v-3c0-2.8-3.6-5-8-5z'/></svg>") center/contain no-repeat;
+}
+.field:has(#email)::before{
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v.5l-10 6-10-6V6zm0 3.2l9.2 5.5a2 2 0 0 0 1.6 0L22 9.2V18a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9.2z'/></svg>") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v.5l-10 6-10-6V6zm0 3.2l9.2 5.5a2 2 0 0 0 1.6 0L22 9.2V18a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9.2z'/></svg>") center/contain no-repeat;
+}
+.field:has(#subject)::before{
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M3 5h18v2H3V5zm0 6h18v2H3v-2zm0 6h12v2H3v-2z'/></svg>") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M3 5h18v2H3V5zm0 6h18v2H3v-2zm0 6h12v2H3v-2z'/></svg>") center/contain no-repeat;
+}
+.field:has(#message)::before{
+  top: 42px;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M2 4h20v14H6l-4 4V4z'/></svg>") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M2 4h20v14H6l-4 4V4z'/></svg>") center/contain no-repeat;
+}
+
+/* кнопка */
+.btn {
+    border-radius: 12px;
+    background: #00000017;
+    /* background: linear-gradient(90deg, rgb(0 0 0 / 95%), rgb(255 0 0 / 95%)); */
+    border: 1px solid rgba(255, 255, 255, .22);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0px 0px 24px rgb(255 255 255 / 25%);
+    transition: transform .15s 
+    ease, box-shadow .2s 
+    ease, filter .2s 
+    ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 16px 34px rgba(255, 255, 255, 0.32);
+  filter: saturate(110%);
+}
+
+/* нотиф після сабміту */
+.form-note{
+  margin-top:12px;
+  color:#fff;
+  opacity:.9;
+}

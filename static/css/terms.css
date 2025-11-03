@@ -1,0 +1,95 @@
+/* ========= TERMS: glass-grid «sexy» ========= */
+:root{
+  --accent:#ff3b7f;         /* рожево-неонова */
+  --glow:rgba(255,59,127,.35);
+}
+
+.sub-content{
+  /* темний градієнт для контрасту зі «склом» */
+  padding-bottom: 96px;
+}
+
+.prose{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:18px;
+  max-width: 980px;
+  margin-inline:auto;
+}
+
+@media (min-width:900px){
+  .prose{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+
+/* усі блокові елементи всередині — як картки */
+.prose > *{
+  position:relative;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:16px;
+  padding:18px 18px 18px 54px;
+  background:linear-gradient( to bottom right,
+    rgba(255,255,255,.08), rgba(255,255,255,.04) );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.15) inset,
+    0 10px 30px rgba(0,0,0,.18),
+    0 0 0 0 rgba(255,59,127,0);
+  transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
+}
+
+/* розтягнемо великі розділи на 2 колонки */
+.prose > h2,
+.prose > ol,
+.prose > ul{ grid-column: 1 / -1; }
+
+/* hover ефект «glow» */
+.prose > *:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.32);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.18) inset,
+    0 14px 40px rgba(0,0,0,.22),
+    0 0 20px 2px var(--glow);
+}
+
+/* іконки через mask + data-uri (легко міняти колір) */
+.prose > *::before{
+  content:"";
+  margin-top: 7px;
+  position:absolute; left:18px; top:18px;
+  width:22px; height:22px;
+  background: #fff;
+  opacity:.9;
+}
+
+/* заголовок розділу — «sparkle» */
+.prose > h2{
+  font-weight:800;
+  letter-spacing:.2px;
+  color:#fff;
+  background:
+    linear-gradient(90deg, rgba(255,59,127,.18), rgba(0,200,255,.18));
+}
+.prose > h2::before{
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M12 2l2.5 5 5 2.5-5 2.5-2.5 5-2.5-5L5 9.5 10 7z'/></svg>") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M12 2l2.5 5 5 2.5-5 2.5-2.5 5-2.5-5L5 9.5 10 7z'/></svg>") center/contain no-repeat;
+}
+
+/* абзаци — «feather» */
+.prose > p::before{
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M4 15c5.5-7 9.5-9 16-11-2 6-4 10.5-11 16H4v-5z'/></svg>") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M4 15c5.5-7 9.5-9 16-11-2 6-4 10.5-11 16H4v-5z'/></svg>") center/contain no-repeat;
+}
+
+/* списки — «check» */
+.prose > ul::before,
+.prose > ol::before{
+  top:20px;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z'/></svg>") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z'/></svg>") center/contain no-repeat;
+}
+
+/* маркери списків + внутрішній відступ */
+.prose ul, .prose ol{ padding-left: 1.25rem; }
+.prose li{ margin: .35rem 0; }

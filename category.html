@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Категорія — lexotex.com</title>
+  <link rel="stylesheet" href="static/css/theme.css">
+  <link rel="icon" href="favicon/favicon.ico">
+</head>
+<body>
+  <!-- Header спрощений -->
+  <div id="__header"></div>
+
+  <main class="page">
+    <h2 id="catTitle" style="margin:0 0 12px">Категорія</h2>
+    <section class="grid" id="videoGrid" aria-labelledby="videoGridHeading">
+      <h2 id="videoGridHeading" class="sr-only">Список відео</h2>
+    </section>
+    <nav class="pagination" id="pagination"></nav>
+  </main>
+
+  <div id="__footer"></div>
+  <div class="backdrop" id="backdrop"></div><aside class="drawer" id="drawer"><div class="drawer-header"><h3>Категорії</h3><button class="drawer-close" id="drawerClose">✕</button></div></aside>
+
+  <script src="static/js/app.js" defer></script>
+  <script src="static/js/include.js" defer></script>
+  <script>
+    // Підпишемо заголовок категорії з URL
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const cat = new URL(location.href).searchParams.get('cat')||'';
+      document.getElementById('catTitle').textContent = 'Категорія: ' + (cat||'Усі');
+    });
+  </script>
+</body>
+</html>

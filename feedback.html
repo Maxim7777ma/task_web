@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Зворотний зв’язок — lexotex.com</title>
+  <link rel="stylesheet" href="static/css/theme.css">
+  <link rel="stylesheet" href="static/css/feedback.css">
+  <link rel="icon" href="favicon/favicon.ico">
+  <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <style>
+    /* Невеликий локальний акцент для форми (не обов’язково) */
+    .contact-card{background:var(--panel); border:1px solid var(--panel-bd); border-radius:16px; padding:20px; box-shadow:var(--shadow)}
+    .field-row{display:grid; gap:12px}
+    @media (min-width:700px){ .field-row{ grid-template-columns:1fr 1fr } }
+    .btn-wide{width:100%}
+  </style>
+</head>
+<body>
+  <div id="__header"></div>
+
+  <main class="sub-content">
+    <div class="sub-header">
+      <a class="back" href="index.html">← На головну</a>
+      <h1 style="margin-top:12px">Зворотний зв’язок</h1>
+      <p class="muted">Ми відповімо на ваш запит якнайшвидше.</p>
+    </div>
+
+    <section class="contact-card" aria-labelledby="contactHeading">
+    <h2 id="contactHeading" class="sr-only">Форма зворотного зв’язку</h2>
+      <form id="contactForm" class="contact-form" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Ім’я</label>
+            <input id="name" name="name" type="text" placeholder="Ваше ім’я" required minlength="2">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required >
+          </div>
+        </div>
+        <div class="field">
+          <label for="subject">Тема</label>
+          <input id="subject" name="subject" type="text" placeholder="Коротко про що запит" required >
+        </div>
+        <div class="field">
+          <label for="message">Текст повідомлення</label>
+          <textarea id="message" name="message" rows="6" placeholder="Опишіть ваше питання" required></textarea>
+        </div>
+        <button class="btn btn-wide" type="submit">Надіслати</button>
+        <div id="formNote" class="form-note" aria-live="polite"></div>
+      </form>
+    </section>
+  </main>
+
+  <div id="__footer"></div>
+
+  <script>
+    // Простий фронтовий хендлер без бекенда
+    document.getElementById('contactForm')?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const form = e.currentTarget;
+      if (!form.checkValidity()){
+        form.reportValidity();
+        return;
+      }
+      const note = document.getElementById('formNote');
+      note.textContent = 'Дякуємо! Повідомлення надіслано (демо).';
+      form.reset();
+    });
+  </script>
+  <script src="static/js/app.js" defer></script>
+  <script src="static/js/include.js" defer></script>
+</body>
+</html>

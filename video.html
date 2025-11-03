@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Перегляд відео — lexotex.com</title>
+  <link rel="stylesheet" href="static/css/theme.css">
+  <link rel="icon" href="favicon/favicon.ico">
+</head>
+<body>
+  <div id="__header"></div>
+  <main class="video-wrap">
+    <div class="xplayer" id="xplayer">
+
+      <video id="player" preload="metadata" playsinline webkit-playsinline></video>
+
+      <!-- Оверлей поверх відео -->
+      <div class="x-overlay" id="xOverlay">
+        <button class="xo-btn xo-left" id="xoBack" aria-label="-15 секунд"></button>
+        <button class="xo-btn xo-center" id="xoCenter" aria-label="Play/Pause"></button>
+        <button class="xo-btn xo-right" id="xoForward" aria-label="+15 секунд"></button>
+      </div>
+
+      <!-- Контроли -->
+      <div class="x-controls" id="xControls">
+        <button class="x-btn" id="btnPlay" aria-label="Відтворити/Пауза"></button>
+        <div class="x-time" id="timeCurrent">00:00</div>
+
+        <div class="x-progress" id="progress">
+          <div class="x-progress__track"></div>
+          <div class="x-progress__buffer" id="bufferBar"></div>
+          <div class="x-progress__bar" id="progressBar"></div>
+          <div class="x-progress__thumb" id="progressThumb"></div>
+        </div>
+
+        <div class="x-time" id="timeDuration">00:00</div>
+
+        <div class="x-volume">
+          <button id="btnMute" class="x-btn" aria-expanded="false">...</button>
+          <div id="volPopover" class="vol-popover">   <!-- NEW -->
+            <input id="volumeRange" type="range" min="0" max="1" step="0.01" />
+          </div>
+        </div>
+        <div class="x-volume">
+          <button class="x-btn" id="btnPiP" aria-label="Picture-in-Picture"></button>
+          <button class="x-btn" id="btnFull" aria-label="На весь екран"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Дамо плейсхолдер, щоб не було “Empty heading” -->
+    <h1 id="videoTitle" style="margin:12px 0 6px">…</h1>
+    <div class="tag-list" id="videoTags"></div>
+
+    <!-- Перенесемо заголовок у саму секцію або додамо прихований -->
+    <section class="grid" id="relatedGrid" aria-labelledby="relatedHeading">
+      <h2 id="relatedHeading" class="visually-hidden">Схожі відео</h2>
+      <!-- тут JS намалює картки -->
+    </section>
+    <nav class="pagination" id="relatedPag" aria-label="Навігація сторінками"></nav>
+  </main>
+
+  <div id="__footer"></div>
+
+  <script src="static/js/app.js" defer></script>
+  <script src="static/js/include.js" defer></script>
+</body>
+</html>
