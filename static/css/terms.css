@@ -1,34 +1,60 @@
-/* ========= TERMS: glass-grid «sexy» ========= */
+/* ========= TERMS: glass-grid «sexy» + интерактив ========= */
 :root{
-  --accent:#ff3b7f;         /* рожево-неонова */
+  --accent:#ff3b7f;
   --glow:rgba(255,59,127,.35);
+  --bd:rgba(255,255,255,.22);
+  --bd-strong:rgba(255,255,255,.32);
+  --ink:#fff; --muted:rgba(255,255,255,.72);
 }
 
-.sub-content{
-  /* темний градієнт для контрасту зі «склом» */
-  padding-bottom: 96px;
-}
+.sub-content{ padding-bottom:96px; }
 
+/* ===== Хлебные крошки (как на підтримці) ===== */
+.breadcrumbs{
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+  font-size:14px; color:var(--muted); margin:6px 0 8px;
+}
+.breadcrumbs a{
+  color:#fff; text-decoration:none; opacity:.9;
+  border-bottom:1px dashed rgba(255,255,255,.25);
+}
+.breadcrumbs a:hover{ opacity:1; border-bottom-color:rgba(255,255,255,.55); }
+.breadcrumbs .sep{ opacity:.5 }
+
+/* ===== Тулбар дій у шапці ===== */
+.sub-header{ position:relative; }
+.sub-header .actions{
+  margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;
+}
+.tiny-btn{
+  border:1px solid var(--bd);
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  color:#fff; font-size:13px; padding:6px 10px; border-radius:10px;
+  cursor:pointer; transition:transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.tiny-btn:hover{ transform:translateY(-1px); border-color:var(--bd-strong); box-shadow:0 10px 26px rgba(0,0,0,.22) }
+
+/* ===== Сітка блоків ===== */
 .prose{
   display:grid;
   grid-template-columns: 1fr;
   gap:18px;
-  max-width: 980px;
   margin-inline:auto;
 }
-
 @media (min-width:900px){
   .prose{ grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
+@media (min-width:1280px){
+  .prose{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
 
-/* усі блокові елементи всередині — як картки */
-.prose > *{
+/* Карточка */
+.prose > .prose_block{
   position:relative;
-  border:1px solid rgba(255,255,255,.22);
+  border:1px solid var(--bd);
   border-radius:16px;
-  padding:18px 18px 18px 54px;
-  background:linear-gradient( to bottom right,
-    rgba(255,255,255,.08), rgba(255,255,255,.04) );
+  padding:0; /* заголовок окремо */
+  background:linear-gradient(to bottom right, rgba(255,255,255,.08), rgba(255,255,255,.04));
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow:
@@ -37,59 +63,98 @@
     0 0 0 0 rgba(255,59,127,0);
   transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
 }
-
-/* розтягнемо великі розділи на 2 колонки */
-.prose > h2,
-.prose > ol,
-.prose > ul{ grid-column: 1 / -1; }
-
-/* hover ефект «glow» */
-.prose > *:hover{
+.prose > .prose_block:hover{
   transform: translateY(-2px);
-  border-color: rgba(255,255,255,.32);
+  border-color: var(--bd-strong);
   box-shadow:
     0 1px 0 rgba(255,255,255,.18) inset,
     0 14px 40px rgba(0,0,0,.22),
     0 0 20px 2px var(--glow);
 }
 
-/* іконки через mask + data-uri (легко міняти колір) */
-.prose > *::before{
-  content:"";
-  margin-top: 7px;
-  position:absolute; left:18px; top:18px;
-  width:22px; height:22px;
-  background: #fff;
-  opacity:.9;
+/* Розтягнення */
+.prose > .prose_block.is-wide{
+  grid-column: 1 / -1; /* на всю ширину на будь-якому брейкпоінті */
 }
 
-/* заголовок розділу — «sparkle» */
-.prose > h2{
-  font-weight:800;
-  letter-spacing:.2px;
-  color:#fff;
-  background:
-    linear-gradient(90deg, rgba(255,59,127,.18), rgba(0,200,255,.18));
+/* Заголовок блоку + інструменти */
+.block-head{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:14px 14px 14px 54px;
+  position:relative;
+  border-bottom:1px solid rgba(255,255,255,.1);
 }
-.prose > h2::before{
+.block-head::before{
+  content:""; position:absolute; left:18px; top:24px;
+  width:22px; height:22px; background:#fff; opacity:.9;
+}
+
+/* Іконки за вмістом (через :has) — fallback: орієнтуймося на h2 */
+.prose > .prose_block:has(> .block-head > h2)::before,
+.block-head::before{
   mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M12 2l2.5 5 5 2.5-5 2.5-2.5 5-2.5-5L5 9.5 10 7z'/></svg>") center/contain no-repeat;
-  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M12 2l2.5 5 5 2.5-5 2.5-2.5 5-2.5-5L5 9.5 10 7z'/></svg>") center/contain no-repeat;
 }
 
-/* абзаци — «feather» */
-.prose > p::before{
-  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M4 15c5.5-7 9.5-9 16-11-2 6-4 10.5-11 16H4v-5z'/></svg>") center/contain no-repeat;
-  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M4 15c5.5-7 9.5-9 16-11-2 6-4 10.5-11 16H4v-5z'/></svg>") center/contain no-repeat;
+/* Заголовок */
+.prose > .prose_block > .block-head h2{
+  margin:0; font-weight:800; letter-spacing:.2px; color:#fff;
+  background: linear-gradient(90deg, rgb(255 0 0 / 18%), rgb(255 255 255 / 0%));
+  border-radius: 1rem;
+  padding: .2rem .6rem;
+  scroll-margin-top: 90px; /* якщо буде фіксована шапка */
 }
 
-/* списки — «check» */
-.prose > ul::before,
-.prose > ol::before{
-  top:20px;
-  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z'/></svg>") center/contain no-repeat;
-  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z'/></svg>") center/contain no-repeat;
+/* Тулзи блоку */
+.block-tools{ display:flex; gap:8px }
+.icon-btn{
+  width:28px; height:28px; border-radius:8px; border:1px solid var(--bd);
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  cursor:pointer;
+  transition:transform .15s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.icon-btn:hover{ transform:translateY(-1px); border-color:var(--bd-strong); box-shadow:0 10px 26px rgba(0,0,0,.22) }
+.icon-btn::before{
+  content:""; display:block; width:100%; height:100%; background:#fff; opacity:.92;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M3 12l6-6v4h7v4H9v4z'/></svg>") center/18px 18px no-repeat;
+}
+.icon-btn.chevron::before{
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M7 10l5 5 5-5z'/></svg>") center/18px 18px no-repeat;
 }
 
-/* маркери списків + внутрішній відступ */
-.prose ul, .prose ol{ padding-left: 1.25rem; }
-.prose li{ margin: .35rem 0; }
+/* Тіло блоку */
+.block-body{
+  padding:16px 18px 18px 18px;
+}
+.prose p{ margin:.4rem 0; color:#fff; opacity:.95 }
+.prose ul, .prose ol{ padding-left: 1.25rem; margin:.3rem 0 0 }
+.prose li{ margin:.35rem 0; }
+
+/* Стан згортання */
+.prose_block.is-collapsed .block-body{ display:none; }
+.prose_block.is-collapsed .icon-btn.chevron{
+  transform:rotate(-180deg);
+}
+
+/* Кнопка «наверх» */
+.to-top{
+  position:fixed; right:18px; bottom:18px; z-index:50;
+  width:42px; height:42px; border-radius:12px; border:1px solid var(--bd);
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  box-shadow:0 12px 32px rgba(0,0,0,.28);
+  cursor:pointer; display:none;
+}
+.to-top.show{ display:block; }
+.to-top::before{
+  content:""; display:block; width:100%; height:100%; background:#fff; opacity:.95;
+  mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M7 14l5-5 5 5z'/></svg>") center/20px 20px no-repeat;
+}
+
+/* Доступність */
+a{ color:#eaf7ff }
+a:hover{ text-decoration:underline }
+
+/* Узкі екрани дрібні поправки */
+@media (max-width:520px){
+  .block-head{ padding-left:50px }
+  .block-head::before{ left:14px }
+}

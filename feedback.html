@@ -9,68 +9,119 @@
   <link rel="icon" href="favicon/favicon.ico">
   <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
   <link rel="manifest" href="favicon/site.webmanifest">
-  <style>
-    /* Невеликий локальний акцент для форми (не обов’язково) */
-    .contact-card{background:var(--panel); border:1px solid var(--panel-bd); border-radius:16px; padding:20px; box-shadow:var(--shadow)}
-    .field-row{display:grid; gap:12px}
-    @media (min-width:700px){ .field-row{ grid-template-columns:1fr 1fr } }
-    .btn-wide{width:100%}
-  </style>
 </head>
 <body>
   <div id="__header"></div>
 
   <main class="sub-content">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="index.html">Головна</a><span class="sep">›</span>
+      <span aria-current="page">Зворотний зв’язок</span>
+    </nav>
+
     <div class="sub-header">
-      <a class="back" href="index.html">← На головну</a>
       <h1 style="margin-top:12px">Зворотний зв’язок</h1>
-      <p class="muted">Ми відповімо на ваш запит якнайшвидше.</p>
+      <p class="muted">Ми завжди на зв’язку та відповімо якнайшвидше.</p>
     </div>
 
-    <section class="contact-card" aria-labelledby="contactHeading">
-    <h2 id="contactHeading" class="sr-only">Форма зворотного зв’язку</h2>
-      <form id="contactForm" class="contact-form" novalidate>
-        <div class="field-row">
-          <div class="field">
-            <label for="name">Ім’я</label>
-            <input id="name" name="name" type="text" placeholder="Ваше ім’я" required minlength="2">
+    <!-- ДВЕ КОЛОНКИ -->
+    <div class="contact-layout">
+      <!-- Левая колонка: инфо о підтримці -->
+      <aside class="support" aria-label="Про нашу підтримку">
+        <div class="support-block is-live">
+          <h3>Жива підтримка</h3>
+          <p>Пишеш — і ми підхоплюємо. Зазвичай відповідаємо протягом 1–3 годин у робочий час.</p>
+          <ul>
+            <li>Години: Пн–Пт, 09:00–18:00 (EET)</li>
+            <li>Email: support@lexotex.com</li>
+            <li>Пріоритет: критичні звернення та DMCA</li>
+          </ul>
+        </div>
+
+        <div class="support-block is-privacy">
+          <h3>Безпека та приватність</h3>
+          <p>Ми не продаємо дані й використовуємо їх лише для відповіді на твоє звернення. DMCA-скарги обробляємо за прозорою процедурою.</p>
+          <ul>
+            <li>Вкажи <em>посилання</em> і докази права — це пришвидшить розгляд</li>
+            <li>Для DMCA обери тему «Скарга DMCA» у полі «Тема»</li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Правая колонка: форма -->
+      <section class="contact-card" aria-labelledby="contactHeading">
+        <h2 id="contactHeading" class="sr-only">Форма зворотного зв’язку</h2>
+
+        <form id="contactForm" class="contact-form" novalidate>
+          <!-- Honeypot -->
+          <div class="hp">
+            <label>Ваш вебсайт <input type="text" name="website" autocomplete="off"></label>
           </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" required >
+
+          <div class="field-row">
+            <div class="field icon-user">
+              <label for="name">Ім’я</label>
+              <input id="name" name="name" type="text" placeholder="Ваше ім’я" required minlength="2" autocomplete="name" inputmode="text">
+              <small class="field-error" id="name-error" aria-live="polite"></small>
+            </div>
+
+            <div class="field icon-mail">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email" inputmode="email">
+              <small class="field-error" id="email-error" aria-live="polite"></small>
+            </div>
           </div>
-        </div>
-        <div class="field">
-          <label for="subject">Тема</label>
-          <input id="subject" name="subject" type="text" placeholder="Коротко про що запит" required >
-        </div>
-        <div class="field">
-          <label for="message">Текст повідомлення</label>
-          <textarea id="message" name="message" rows="6" placeholder="Опишіть ваше питання" required></textarea>
-        </div>
-        <button class="btn btn-wide" type="submit">Надіслати</button>
-        <div id="formNote" class="form-note" aria-live="polite"></div>
-      </form>
-    </section>
+
+          <!-- Тема: выпадающий список-кнопки -->
+          <div class="field icon-subject">
+            <label for="subject">Тема</label>
+
+            <div id="subjectControl" class="subject-control"
+                data-options='["Загальний запит","Партнерство","Правовий запит","Скарга DMCA","Підтримка","Інше"]'>
+              <input type="hidden" id="subject" name="subject" required>
+              <button type="button" class="subject-toggle" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="subjectLabel">
+                <span id="subjectLabel">Оберіть тему</span>
+                <i class="chev" aria-hidden="true"></i>
+              </button>
+
+              <div class="subject-list" role="listbox" aria-labelledby="subjectLabel"></div>
+
+              <div class="subject-custom" id="subjectCustomWrap">
+                <label class="sr-only" for="subjectCustom">Вкажіть тему</label>
+                <input type="text" id="subjectCustom" placeholder="Опишіть тему" autocomplete="off">
+                <small class="field-error" id="subject-error" aria-live="polite"></small>
+              </div>
+            </div>
+          </div>
+
+          <div class="field icon-message">
+            <label for="message">Текст повідомлення</label>
+            <textarea id="message" name="message" rows="6" placeholder="Опишіть ваше питання" required minlength="20" maxlength="2000"></textarea>
+            <small class="field-error" id="message-error" aria-live="polite"></small>
+          </div>
+
+          <!-- reCAPTCHA (v2 checkbox). Заміни SITE_KEY на свій -->
+          <div class="captcha-wrap">
+            <div class="g-recaptcha" data-sitekey="SITE_KEY"></div>
+            <small class="field-error" id="captcha-error" aria-live="polite"></small>
+          </div>
+
+          <button class="btn" type="submit">Надіслати</button>
+          <div id="formNote" class="form-note" aria-live="polite"></div>
+        </form>
+      </section>
+    </div>
+    <!-- /contact-layout -->
   </main>
 
   <div id="__footer"></div>
 
-  <script>
-    // Простий фронтовий хендлер без бекенда
-    document.getElementById('contactForm')?.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const form = e.currentTarget;
-      if (!form.checkValidity()){
-        form.reportValidity();
-        return;
-      }
-      const note = document.getElementById('formNote');
-      note.textContent = 'Дякуємо! Повідомлення надіслано (демо).';
-      form.reset();
-    });
-  </script>
+  <!-- reCAPTCHA v2 -->
+  <script src="https://www.google.com/recaptcha/api.js" defer></script>
+
   <script src="static/js/app.js" defer></script>
   <script src="static/js/include.js" defer></script>
+  <script src="static/js/subject-select.js" defer></script>
+  <script src="static/js/feedback-validate.js" defer></script>
 </body>
 </html>

@@ -84,6 +84,7 @@ function renderGrid({container, paginationWrap, items, page = 1, perPage = 20, o
           ${v.videoWebm ? `<source src="${v.videoWebm}" type="video/webm">` : ''}
           ${v.videoMp4  ? `<source src="${v.videoMp4}"  type="video/mp4">`  : ''}
         </video>
+        <span class="v-len" aria-hidden="true">${v.duration || '30мин'}</span>
       </a>
     ` : `
       <a class="thumb" href="${v.url}">
@@ -698,14 +699,34 @@ function bootVideo() {
   const video = DATA.find(v => v.id === id) || DATA[0];
 
   // Заголовок/теги
-  qs('#videoTitle')?.append(document.createTextNode(video.title));
+  const titleEl = qs('#videoTitle');
+  if (titleEl) titleEl.textContent = video.title; // не аппендим, а заменяем
   const tags = qs('#videoTags');
+  if (tags) tags.innerHTML = ''; // чтобы не копились при повторном вызове
   (video.tags || []).forEach(t => {
     const span = document.createElement('span');
     span.className = 'tag';
     span.textContent = t;
     tags?.appendChild(span);
   });
+  const NICKS = ["BreeNova","LunaFox","MilaRay","AriSky","NikaSolar","YumiCat","VeraMuse","ZoeStar","KiraWave","MonaLeaf"];
+  const PLATFORMS = ["Instagram","TikTok","Fansly","OnlyFans","YouTube","Twitch","Patreon","X"];
+
+  // використовуємо дані з DATA, якщо ти їх додаси пізніше; інакше — детермінований «рандом»
+  const nick = (video.modelNick) || NICKS[id % NICKS.length];
+  const plat = (video.platform)  || PLATFORMS[(id * 7) % PLATFORMS.length];
+
+  // створюємо блок і вставляємо його ОДРАЗУ ПІСЛЯ #videoTags
+  let metaBox = byId('modelMeta');
+  if (!metaBox) {
+    byId('videoTags')?.insertAdjacentHTML('afterend', '<div id="modelMeta" class="model-meta"></div>');
+    metaBox = byId('modelMeta');
+  }
+  metaBox.innerHTML = `
+    <span class="nick">@${nick}</span>
+    <span class="sep">•</span>
+    <span class="platform">${plat}</span>
+   `;
 
   // Источники
   player.innerHTML = "";
@@ -772,8 +793,4 @@ function bootAll() {
 }
 window.siteBoot = bootAll;
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', bootAll);
-} else {
-  bootAll();
-}
+document.addEventListener('DOMContentLoaded', bootAll);

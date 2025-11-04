@@ -68,7 +68,7 @@ a:hover{text-decoration:underline}
   display:grid; align-items:center;
   grid-template-columns:auto 1fr auto auto auto;
   gap:16px; padding:16px clamp(16px, 6vw, 36px);
-  max-width:1300px; margin:0 auto;
+  margin:0 auto;
 }
 .brand{color:var(--text); font-weight:800; font-size:28px; letter-spacing:.3px}
 
@@ -97,12 +97,22 @@ a:hover{text-decoration:underline}
   background: url("../img/avatar.webp") center/cover no-repeat;
 }
 
+.model-meta{
+  margin: 18px 0 14px;
+  color: #fff;
+  opacity: .9;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+.model-meta .nick{ font-weight: 700; }
+.model-meta .sep{ opacity: .5; }
 
 
 .burger{background:transparent; border:0; display:grid; gap:4px; cursor:pointer}
 .burger span{width:22px; height:2px; background:#fff; display:block; border-radius:2px}
 
-.frost{height:58px; margin-top:6px; background:linear-gradient(to bottom, rgba(255,255,255,.12), rgba(255,255,255,0)); filter:blur(2px)}
+.frost{display: none; height:58px; margin-top:6px; background:linear-gradient(to bottom, rgba(255,255,255,.12), rgba(255,255,255,0)); filter:blur(2px)}
 
 @media (max-width:700px){.top-links{display:none}}
 
@@ -129,8 +139,9 @@ a:hover{text-decoration:underline}
 .drawer-footer{margin-top:auto; padding:16px 18px; display:flex; gap:10px}
 
 /* ========== PAGE & GRID ========== */
-.page{max-width:1300px; margin:0 auto; padding:24px clamp(16px,6vw,36px)}
-.grid{display:grid; gap:28px; grid-template-columns:repeat(3, minmax(0,1fr))}
+.page{ margin:0 auto; padding:24px clamp(16px,6vw,36px)}
+.grid{display:grid; gap:28px; grid-template-columns:repeat(4, minmax(0,1fr))}
+@media (max-width:1250px){.grid{grid-template-columns:repeat(3, minmax(0,1fr))}}
 @media (max-width:1100px){.grid{grid-template-columns:repeat(2, minmax(0,1fr))}}
 @media (max-width:700px){.grid{grid-template-columns:1fr}}
 
@@ -169,12 +180,12 @@ a:hover{text-decoration:underline}
 .footer-col h5{margin:.2rem 0 .7rem; font-size:14px; color:#ddd}
 .footer-col ul{margin:0; padding:0; list-style:none}
 .footer-col li{margin:.35rem 0}
-.footer-bottom{text-align:center; color:#bbb; padding:16px}
+.footer-bottom{text-align:center; color:#bbb; padding:16px;padding-bottom: 2rem;}
 
 /* ========== SUBPAGES (Terms, DMCA, Feedback, Video) ========== */
-.sub-header{max-width:900px; margin:0 auto; padding:24px clamp(16px,6vw,36px)}
+.sub-header{ margin:0 auto; padding:24px clamp(16px,6vw,36px)}
 .sub-header .back{color:#ddd}
-.sub-content{max-width:900px; margin:0 auto 40px; padding:0 clamp(16px,6vw,36px)}
+.sub-content{ margin:0 auto 40px; padding:0 clamp(16px,6vw,36px)}
 .sub-footer{text-align:center; padding:20px; color:#bbb}
 
 /* Feedback form */
@@ -416,3 +427,72 @@ a:hover{text-decoration:underline}
 
 /* Firefox не підтримує цю кнопку — можна проігнорити
    або додати кастомну кнопку (див. варіант B) */
+
+   /* === Card meta truncation & no-wrap for views === */
+.meta,
+.meta-row { min-width: 0; }               /* важно для работы ellipsis во flex */
+
+.meta-row{
+  display: flex;                          /* уже есть, но дублирование не страшно */
+  align-items: center;
+  gap: 8px;                               /* удобнее, чем space-between */
+  justify-content: initial;               /* убираем растяжение */
+  flex-wrap: nowrap;                      /* ничего не переносим на новую строку */
+}
+
+.author{
+  flex: 1 1 auto;                         /* автор занимает всё доступное */
+  min-width: 0;                           /* критично для ellipsis */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;                    /* одна строка + … */
+}
+
+.views{
+  flex: 0 0 auto;                         /* фиксированная ширина справа */
+  white-space: nowrap;                    /* не переносим */
+  margin-left: auto;                      /* уезжает вправо */
+}
+
+/* === Title (у тебя уже line-clamp:2) — оставим, просто страхуемся === */
+.title{
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* === На странице видео: ник/платформа — ник режем, платформа не переносится === */
+.model-meta{
+  display:flex; align-items:center; gap:8px;
+  min-width:0;
+}
+.model-meta .nick{
+  flex:1 1 auto; min-width:0;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.model-meta .sep,
+.model-meta .platform{
+  flex:0 0 auto; white-space:nowrap;
+}
+
+
+/* ==== Duration badge on video thumbnail ==== */
+.thumb{ position: relative; } /* нужно для абсолютного позиционирования бейджа */
+
+.v-len{
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  padding: 3px 7px;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
+  background: rgba(0,0,0,.6); /* полупрозрачный черный */
+  border-radius: 6px;
+  pointer-events: none;       /* чтобы не мешал клику по карточке */
+  z-index: 2;
+  /* небольшая читаемость поверх видео */
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+}

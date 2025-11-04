@@ -11,37 +11,231 @@
   <link rel="manifest" href="favicon/site.webmanifest">
 </head>
 <body>
-  <!-- Header (спрощена версія як на головній) -->
   <div id="__header"></div>
 
   <main class="sub-content">
+    <!-- Крихти (як на сторінці підтримки) -->
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="index.html">Головна</a><span class="sep">›</span>
+      <span aria-current="page">Правила користування</span>
+    </nav>
+
     <div class="sub-header">
       <a class="back" href="index.html">← На головну</a>
       <h1 style="margin-top:12px">Правила користування</h1>
       <p class="muted">Останнє оновлення: 01.11.2025</p>
+
+      <!-- Тулбар дій -->
+      <div class="actions">
+        <button class="tiny-btn" data-act="expand-all">Розгорнути все</button>
+        <button class="tiny-btn" data-act="collapse-all">Згорнути все</button>
+      </div>
     </div>
 
-    <article class="prose">
-      <h2>1. Вступ</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet eros nec magna cursus aliquet. Sed vitae lorem eu lectus gravida posuere. Integer a justo at mi vulputate rutrum.</p>
+    <article class="prose" id="termsGrid">
+      <!-- 1 -->
+      <section class="prose_block is-wide" id="vstup" data-collapsible>
+        <div class="block-head">
+          <h2>1. Вступ</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#vstup" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#vstup" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <p>Ці правила визначають умови доступу й користування сервісом <strong>lexotex.com</strong>. Користуючись сайтом, ти погоджуєшся дотримуватися цього документа та пов’язаних політик (Конфіденційність, DMCA тощо).</p>
+        </div>
+      </section>
 
-      <h2>2. Умови доступу</h2>
-      <p>Praesent magna purus, dictum vel fermentum non, bibendum at quam. Integer venenatis interdum sapien, non facilisis ipsum ullamcorper id.</p>
+      <!-- 2 -->
+      <section class="prose_block" id="dostup" data-collapsible>
+        <div class="block-head">
+          <h2>2. Умови доступу</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#dostup" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#dostup" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <p>Сервіс надається «як є». Ми можемо обмежувати доступ для технічної підтримки, оновлень або у випадку порушень. Для окремих розділів може знадобитися автентифікація.</p>
+        </div>
+      </section>
 
-      <h2>3. Контент та права</h2>
-      <p>Nulla facilisi. Donec porta, quam vitae dictum eleifend, justo nibh commodo risus, non imperdiet nibh odio eget lacus. Mauris sed felis luctus, ultrices purus et, ullamcorper augue.</p>
+      <!-- 3 -->
+      <section class="prose_block" id="account" data-collapsible>
+        <div class="block-head">
+          <h2>3. Обліковий запис</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#account" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#account" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <ul>
+            <li>Ти відповідаєш за безпеку логіна, пароля та доступів.</li>
+            <li>Сповіщай нас про підозрілу активність або компрометацію облікових даних.</li>
+            <li>Ми можемо призупинити або видалити акаунт при порушеннях.</li>
+          </ul>
+        </div>
+      </section>
 
-      <h2>4. Обмеження відповідальності</h2>
-      <p>Ut eleifend luctus justo, a blandit justo bibendum sit amet. Integer elementum, magna eu volutpat gravida, sem ex tristique sem, vel tempor nisi mauris nec nibh.</p>
+      <!-- 4 -->
+      <section class="prose_block is-wide" id="payments" data-collapsible>
+        <div class="block-head">
+          <h2>4. Платежі та виставлення рахунків</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#payments" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#payments" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <p>Оплата може здійснюватися через доступні способи (картки, рахунок, інші провайдери). Тарифи й податки зазначаються при оформленні. У разі невдалої оплати ми можемо повторити списання або тимчасово обмежити доступ до платних функцій.</p>
+        </div>
+      </section>
 
-      <h2>5. Зміни правил</h2>
-      <p>Morbi sodales lacinia ipsum, vitae varius augue mattis sed. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
+      <!-- 5 -->
+      <section class="prose_block" id="user-content" data-collapsible>
+        <div class="block-head">
+          <h2>5. Контент користувача</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#user-content" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#user-content" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <p>Ти зберігаєш права на свій контент. Надаючи нам матеріали, ти наділяєш <strong>обмеженою ліцензією</strong> відтворювати й показувати їх у межах сервісу для роботи функцій. Ти гарантуєш, що маєш права на розміщення.</p>
+        </div>
+      </section>
+
+      <!-- 6 -->
+      <section class="prose_block" id="dmca" data-collapsible>
+        <div class="block-head">
+          <h2>6. DMCA та інтелектуальна власність</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#dmca" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#dmca" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <ul>
+            <li>Для скарг на порушення авторських прав використай форму «Скарга DMCA».</li>
+            <li>Додай посилання, ідентифікатори й докази права.</li>
+            <li>Ми діємо за процедурою повідомлення/видалення та можемо обмежити повторні порушення.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section class="prose_block is-wide" id="privacy" data-collapsible>
+        <div class="block-head">
+          <h2>7. Конфіденційність</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#privacy" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#privacy" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <p>Ми поважаємо твою приватність і обробляємо дані відповідно до Політики конфіденційності. Технічні журнали, куки, логи — лише для безпеки та покращення сервісу.</p>
+        </div>
+      </section>
+
+      <!-- 8 -->
+      <section class="prose_block" id="security" data-collapsible>
+        <div class="block-head">
+          <h2>8. Безпека</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#security" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#security" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <p>Ми застосовуємо сучасні заходи захисту. Ти зобов’язуєшся не намагатися обійти обмеження доступу й негайно повідомляти про вразливості.</p>
+        </div>
+      </section>
+
+      <!-- 9 -->
+      <section class="prose_block" id="prohibited" data-collapsible>
+        <div class="block-head">
+          <h2>9. Заборонені дії</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#prohibited" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#prohibited" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <ul>
+            <li>Несанкціонований збір або скрейпінг даних.</li>
+            <li>Контент, що порушує закон, права третіх осіб, або містить шкідливий код.</li>
+            <li>Зловмисне навантаження інфраструктури.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 10 -->
+      <section class="prose_block" id="warranty" data-collapsible>
+        <div class="block-head">
+          <h2>10. Відмова від гарантій</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#warranty" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#warranty" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <p>Сервіс надається без прямих чи неявних гарантій придатності, безперервності або відсутності помилок. Ризики від використання — на стороні користувача.</p>
+        </div>
+      </section>
+
+      <!-- 11 -->
+      <section class="prose_block" id="liability" data-collapsible>
+        <div class="block-head">
+          <h2>11. Обмеження відповідальності</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#liability" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#liability" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <p>Ми не несемо відповідальності за непрямі збитки, втрату даних або вигоди. Максимальна відповідальність — у межах фактично сплачених сум за останні 12 місяців.</p>
+        </div>
+      </section>
+
+      <!-- 12 -->
+      <section class="prose_block is-wide" id="changes" data-collapsible>
+        <div class="block-head">
+          <h2>12. Зміни правил</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#changes" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#changes" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <p>Ми можемо оновлювати документ. Ключові зміни публікуємо на цій сторінці. Продовження користування після публікації означає згоду з оновленнями.</p>
+        </div>
+      </section>
+
+      <!-- 13 -->
+      <section class="prose_block" id="contact" data-collapsible>
+        <div class="block-head">
+          <h2>13. Контакти</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#contact" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#contact" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <p>Питання по правилах: <a href="feedback.html">форма зворотного зв’язку</a>. Для питань IP/DMCA — обирай тему «Скарга DMCA».</p>
+        </div>
+      </section>
     </article>
+
+    <!-- Кнопка «наверх» -->
+    <button id="toTop" class="to-top" aria-label="До початку"></button>
   </main>
 
   <div id="__footer"></div>
 
   <script src="static/js/app.js" defer></script>
   <script src="static/js/include.js" defer></script>
+  <script src="static/js/terms.js" defer></script>
 </body>
 </html>

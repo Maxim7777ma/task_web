@@ -14,31 +14,220 @@
   <div id="__header"></div>
 
   <main class="sub-content">
+    <!-- Крихти + вихід на головну -->
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="index.html">Головна</a><span class="sep">›</span>
+      <span aria-current="page">DMCA</span>
+    </nav>
+
     <div class="sub-header">
-      <a class="back" href="index.html">← На головну</a>
       <h1 style="margin-top:12px">DMCA</h1>
       <p class="muted">Останнє оновлення: 01.11.2025</p>
+
+      <!-- Пілли-швидка навігація -->
+      <div class="pill-nav" role="navigation" aria-label="Швидкі посилання">
+        <a href="#policy" class="pill">Політика</a>
+        <a href="#what-counts" class="pill">Що вважається порушенням</a>
+        <a href="#how-to" class="pill">Як подати скаргу</a>
+        <a href="#template" class="pill">Шаблон скарги</a>
+        <a href="#counter" class="pill">Контр-сповіщення</a>
+        <a href="#timeline" class="pill">Термін/процес</a>
+        <a href="#repeat" class="pill">Повторні порушення</a>
+        <a href="#faq" class="pill">FAQ</a>
+        <a href="#contact" class="pill">Контакт</a>
+      </div>
+
+      <!-- Дії сторінки -->
+      <div class="actions">
+        <button class="tiny-btn" data-act="expand-all">Розгорнути все</button>
+        <button class="tiny-btn" data-act="collapse-all">Згорнути все</button>
+      </div>
     </div>
 
-    <article class="prose">
-      <h2>Політика щодо авторських прав</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum sagittis iaculis. Integer tempor, odio in luctus dapibus, leo erat imperdiet purus, in tristique leo arcu eget nibh.</p>
+    <article class="prose" id="dmcaGrid">
+      <!-- 1: Політика (широка) -->
+      <section class="prose_block is-wide is-heading" id="policy" data-collapsible>
+        <div class="block-head">
+          <h2>Політика щодо авторських прав</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#policy" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#policy" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <p>Ми поважаємо права інтелектуальної власності і реагуємо на належним чином оформлені DMCA-запити. Видалення або обмеження доступу відбувається після перевірки суті звернення.</p>
+        </div>
+      </section>
 
-      <h2>Як надіслати скаргу</h2>
-      <ol>
-        <li>Lorem ipsum dolor sit amet, consectetur.</li>
-        <li>Proin ac mauris placerat, hendrerit lectus in, posuere enim.</li>
-        <li>Vivamus euismod, massa at efficitur ultricies, lorem mi varius lectus.</li>
-      </ol>
+      <!-- 2: Що вважається порушенням -->
+      <section class="prose_block is-text" id="what-counts" data-collapsible>
+        <div class="block-head">
+          <h2>Що вважається порушенням</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#what-counts" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#what-counts" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <p>Несанкціоноване відтворення, публікація, розповсюдження або публічне показування контенту, на який заявник має виключні права, за відсутності ліцензії чи винятків (fair use тощо).</p>
+        </div>
+      </section>
 
-      <h2>Контакт</h2>
-      <p>Curabitur eget bibendum felis. Nulla facilisi. Integer sem arcu, dignissim in nulla vel, faucibus porta erat.</p>
+      <!-- 3: Як подати скаргу (список) -->
+      <section class="prose_block is-list" id="how-to" data-collapsible>
+        <div class="block-head">
+          <h2>Як надіслати скаргу</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#how-to" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#how-to" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <ol>
+            <li>Підготуй ідентифікацію твору та точні URL з порушенням.</li>
+            <li>Додай контактні дані правовласника або уповноваженого агента.</li>
+            <li>Надай заяву про добросовісність і підтвердження під присягою.</li>
+            <li>Надішли через <a href="feedback.html">форму зворотного зв’язку</a> (обери тему «Скарга DMCA»).</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 4: Шаблон скарги (широка + копі-кнопка) -->
+      <section class="prose_block is-wide is-text" id="template" data-collapsible>
+        <div class="block-head">
+          <h2>Шаблон DMCA-сповіщення</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#template" title="Скопіювати посилання"></button>
+            <button class="icon-btn copy" data-copy-code="#dmca-template" title="Скопіювати текст шаблону"></button>
+            <button class="icon-btn chevron" data-toggle="#template" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <pre id="dmca-template" class="code-slab">Subject: DMCA Notice
+
+I, the undersigned, state UNDER PENALTY OF PERJURY that:
+1) I am the copyright owner or authorized to act on behalf of the owner.
+2) The following material infringes my rights: [work title/description].
+3) Infringing URLs:
+   - https://lexotex.com/path/...
+   - (list all)
+4) The original material is located at: [source/URL/registration if applicable].
+5) I have a good faith belief that the use is not authorized by the owner, its agent, or the law.
+6) My contact information:
+   Name:
+   Company (if any):
+   Address:
+   Phone:
+   Email:
+7) I consent to the jurisdiction and agree to accept service of process.
+
+Signature:
+Full Name:
+Date:</pre>
+          <p class="hint">Порада: чим точніше вкажеш ідентифікатори творів і URL, тим швидше обробимо звернення.</p>
+        </div>
+      </section>
+
+      <!-- 5: Контр-сповіщення (список) -->
+      <section class="prose_block is-list" id="counter" data-collapsible>
+        <div class="block-head">
+          <h2>Контр-сповіщення (якщо видалено помилково)</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#counter" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#counter" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <ol>
+            <li>Ідентифікуй матеріал, який видалено або до якого обмежено доступ.</li>
+            <li>Додай заяву про добросовісність і згоду на юрисдикцію.</li>
+            <li>Надішли через <a href="feedback.html">форму</a> з темою «Правовий запит».</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 6: Термін/Процес -->
+      <section class="prose_block is-list" id="timeline" data-collapsible>
+        <div class="block-head">
+          <h2>Типовий термін та процес</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#timeline" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#timeline" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <ul>
+            <li>Підтвердження отримання — до 1–2 роб. днів.</li>
+            <li>Оцінка звернення — залежно від повноти даних.</li>
+            <li>Видалення/обмеження доступу — після підтвердження валідності.</li>
+            <li>Сповіщення сторін — одразу після дії.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 7: Повторні порушення -->
+      <section class="prose_block is-text" id="repeat" data-collapsible>
+        <div class="block-head">
+          <h2>Політика повторних порушень</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#repeat" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#repeat" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <p>Облікові записи або проєкти, що системно порушують авторські права, можуть бути призупинені чи видалені згідно з нашою політикою.</p>
+        </div>
+      </section>
+
+      <!-- 8: FAQ (широко) -->
+      <section class="prose_block is-wide is-text" id="faq" data-collapsible>
+        <div class="block-head">
+          <h2>Часті питання (FAQ)</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#faq" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#faq" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <details>
+            <summary>Чи підпадає моє використання під fair use?</summary>
+            <p>Це правова оцінка, яка залежить від цілей, обсягу та впливу на ринок. Якщо не впевнений — краще отримати юридичну консультацію.</p>
+          </details>
+          <details>
+            <summary>Чи обов’язково надсилати під присягою?</summary>
+            <p>Так, DMCA вимагає заяви під присягою про добросовісність та точність відомостей.</p>
+          </details>
+          <details>
+            <summary>Що робити, якщо я автор, але матеріал завантажив мій підрядник?</summary>
+            <p>Надішли підтвердження прав (договір/реєстрація) і вкажи точні URL. Ми допоможемо коректно оформити звернення.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- 9: Контакт + CTA -->
+      <section class="prose_block is-text" id="contact" data-collapsible>
+        <div class="block-head">
+          <h2>Контакт</h2>
+          <div class="block-tools">
+            <button class="icon-btn" data-copy="#contact" title="Скопіювати посилання"></button>
+            <button class="icon-btn chevron" data-toggle="#contact" aria-expanded="true" title="Згорнути"></button>
+          </div>
+        </div>
+        <div class="block-body">
+          <p>Офіційні звернення: скористайся <a href="feedback.html">формою зворотного зв’язку</a> і обери тему «Скарга DMCA».</p>
+          <p><a class="btn cta" href="feedback.html">Подати скаргу DMCA</a></p>
+        </div>
+      </section>
     </article>
+
+    <!-- Кнопка «наверх» -->
+    <button id="toTop" class="to-top" aria-label="До початку"></button>
   </main>
 
   <div id="__footer"></div>
 
   <script src="static/js/app.js" defer></script>
   <script src="static/js/include.js" defer></script>
+  <script src="static/js/dmca.js" defer></script>
 </body>
 </html>
