@@ -65,6 +65,7 @@ a:hover{text-decoration:underline}
   backdrop-filter:blur(2px);
 }
 .nav-inner{
+  max-width: 1400px;
   display:grid; align-items:center;
   grid-template-columns:auto 1fr auto auto auto;
   gap:16px; padding:16px clamp(16px, 6vw, 36px);
